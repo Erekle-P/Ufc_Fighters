@@ -1,0 +1,23 @@
+{
+    "Men" : [
+        {
+            "id" : 1,
+            "name" : "Ilia",
+            "weight" : 135
+        },
+
+        {
+            "id" : 2,
+            "name" : "Ilia",
+            "weight" : 135
+        }
+    ],
+
+
+    "Women" : [
+        {
+            "id" : 1,
+            "name" : "Linda",
+            "weight" : 115
+        }]
+}
