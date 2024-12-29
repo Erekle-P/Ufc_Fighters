@@ -1,0 +1,87 @@
+/* General Layout for the Division */
+.men-division, .women-division {
+  padding: 20px;
+  background-color: #f4f4f4;
+}
+
+/* Style for the list of fighters */
+.fighter-list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+/* Style for each fighter's card */
+.fighter-card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  text-align: center;
+  padding: 10px;
+}
+
+/* Style for the fighter image */
+.fighter-image {
+  width: 150px;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+/* Styling for fighter information */
+.fighter-info h2 {
+  font-size: 1.2rem;
+  margin: 10px 0;
+}
+
+.fighter-info p {
+  font-size: 1rem;
+  margin: 5px 0;
+}
+
+/* Optional: Styling for the "Champion" label */
+.fighter-info strong {
+  color: gold;
+  font-weight: bold;
+}
+
+
+/* General styles for NavBar */
+.navbar {
+  background-color: #333;
+  color: white;
+  padding: 10px 20px;
+  font-family: Arial, sans-serif;
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #ff5722; /* Logo color */
+  text-decoration: none;
+}
+
+.navbar-links {
+  display: flex;
+}
+
+.navbar-link {
+  color: white;
+  margin-left: 15px;
+  text-decoration: none;
+  font-size: 1.1rem;
+}
+
+.navbar-link:hover {
+  text-decoration: underline;
+  color: #ff5722; /* Highlight on hover */
+}
