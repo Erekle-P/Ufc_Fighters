@@ -39,6 +39,8 @@ const MenDivision = () => {
       {/* Filter buttons for each weight class */}
       <div className="filter">
         <button onClick={() => onCategoryChange("All")}>All</button>
+        <button onClick={() => onCategoryChange("Flyweight")}>Flyweight</button>
+        <button onClick={() => onCategoryChange("Bantamweight")}>Bantamweight</button>
         <button onClick={() => onCategoryChange("Featherweight")}>Featherweight</button>
         <button onClick={() => onCategoryChange("Lightweight")}>Lightweight</button>
         <button onClick={() => onCategoryChange("Welterweight")}>Welterweight</button>

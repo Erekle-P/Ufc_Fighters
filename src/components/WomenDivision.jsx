@@ -42,7 +42,7 @@ const WomenDivision = () => {
         <button onClick={() => onCategoryChange("Strawweight")}>Strawweight</button>
         <button onClick={() => onCategoryChange("Flyweight")}>Flyweight</button>
         <button onClick={() => onCategoryChange("Bantamweight")}>Bantamweight</button>
-        <button onClick={() => onCategoryChange("Featherweight")}>Featherweight</button>
+        
       </div>
 
       {/* Display filtered fighters */}
