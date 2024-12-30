@@ -10,7 +10,7 @@ function App() {
   useEffect(() => {
     fetch("http://localhost:4000/Men") // Adjust the URL based on your actual endpoint
       .then((response) => response.json())
-      .then((data) => setFighters(data.Men)) // Assuming you're fetching "Men" fighters
+      .then((data) => setFighters(data.Men)) // fetching "Men" fighters
       .catch((error) => console.error("Error fetching fighters:", error));
   }, []); // Empty dependency array ensures this runs once when the component mounts
 

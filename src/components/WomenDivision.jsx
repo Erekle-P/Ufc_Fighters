@@ -1,17 +1,19 @@
 import { useState, useEffect } from "react";
+import Search from "./Search";
 
 const WomenDivision = () => {
   const [fighters, setFighters] = useState([]);
   const [filteredFighters, setFilteredFighters] = useState([]);
-  const [category, setCategory] = useState("All"); // For filtering by weight class
+  const [category, setCategory] = useState("All");
+  const [searchQuery, setSearchQuery] = useState("");
 
   // Fetch fighters from the Women endpoint
   useEffect(() => {
     fetch("http://localhost:4000/Women")
       .then((response) => response.json())
       .then((data) => {
-        setFighters(data); // Assuming the response directly contains the fighters array
-        setFilteredFighters(data); // Initially, show all fighters
+        setFighters(data);
+        setFilteredFighters(data); // Initially show all fighters
       })
       .catch((error) => console.error("Error fetching fighters", error));
   }, []);
@@ -32,9 +34,22 @@ const WomenDivision = () => {
     filterFighters(newCategory);
   };
 
+  // Handle search query change
+  const handleSearch = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
+  // Filter fighters by name based on search query
+  const filteredByName = filteredFighters.filter((fighter) =>
+    fighter.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
     <div>
-      <h1>Women's Division</h1>
+      <h1>Women&apos;s Division</h1>
+
+      {/* Search Component */}
+      <Search onSearch={handleSearch} />
 
       {/* Filter buttons for each weight class */}
       <div className="filter">
@@ -42,13 +57,12 @@ const WomenDivision = () => {
         <button onClick={() => onCategoryChange("Strawweight")}>Strawweight</button>
         <button onClick={() => onCategoryChange("Flyweight")}>Flyweight</button>
         <button onClick={() => onCategoryChange("Bantamweight")}>Bantamweight</button>
-        
       </div>
 
       {/* Display filtered fighters */}
       <div className="fighters-list">
-        {filteredFighters.length > 0 ? (
-          filteredFighters.map((fighter) => (
+        {filteredByName.length > 0 ? (
+          filteredByName.map((fighter) => (
             <div key={fighter.id} className="fighter">
               <img src={fighter.image} alt={fighter.name} />
               <h2>{fighter.name}</h2>
