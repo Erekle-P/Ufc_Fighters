@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import FighterForm from "./FighterForm";
-import Styles from './style.css';
+//import Styles from './style.css';
 
 
 const HomePage = () => {
