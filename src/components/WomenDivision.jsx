@@ -4,62 +4,48 @@ import Search from "./Search";
 const WomenDivision = () => {
   const [fighters, setFighters] = useState([]);
   const [filteredFighters, setFilteredFighters] = useState([]);
-  const [category, setCategory] = useState("All");
+  const [categories, setCategories] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
 
-  // Fetch fighters from the Women endpoint
   useEffect(() => {
     fetch("http://localhost:4000/Women")
       .then((response) => response.json())
       .then((data) => {
         setFighters(data);
-        setFilteredFighters(data); // Initially show all fighters
+        setFilteredFighters(data);
+        const uniqueCategories = ["All", ...new Set(data.map((fighter) => fighter.weightClass))];
+        setCategories(uniqueCategories);
       })
-      .catch((error) => console.error("Error fetching fighters", error));
+      .catch((error) => console.error("Error fetching fighters:", error));
   }, []);
 
-  // Filter fighters by selected category
   const filterFighters = (category) => {
     if (category === "All") {
-      setFilteredFighters(fighters); // Show all fighters if "All" is selected
+      setFilteredFighters(fighters);
     } else {
-      const filtered = fighters.filter((fighter) => fighter.weightClass === category);
-      setFilteredFighters(filtered);
+      setFilteredFighters(fighters.filter((fighter) => fighter.weightClass === category));
     }
   };
 
-  // Handle category change
-  const onCategoryChange = (newCategory) => {
-    setCategory(newCategory);
-    filterFighters(newCategory);
-  };
-
-  // Handle search query change
   const handleSearch = (event) => {
     setSearchQuery(event.target.value);
   };
 
-  // Filter fighters by name based on search query
   const filteredByName = filteredFighters.filter((fighter) =>
     fighter.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   return (
-    <div>
+    <div className="women-page">
       <h1>Women&apos;s Division</h1>
-
-      {/* Search Component */}
       <Search onSearch={handleSearch} />
-
-      {/* Filter buttons for each weight class */}
       <div className="filter">
-        <button onClick={() => onCategoryChange("All")}>All</button>
-        <button onClick={() => onCategoryChange("Strawweight")}>Strawweight</button>
-        <button onClick={() => onCategoryChange("Flyweight")}>Flyweight</button>
-        <button onClick={() => onCategoryChange("Bantamweight")}>Bantamweight</button>
+        {categories.map((cat) => (
+          <button className="category-button" key={cat} onClick={() => filterFighters(cat)}>
+            {cat}
+          </button>
+        ))}
       </div>
-
-      {/* Display filtered fighters */}
       <div className="fighters-list">
         {filteredByName.length > 0 ? (
           filteredByName.map((fighter) => (
